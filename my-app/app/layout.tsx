@@ -3,6 +3,7 @@ import { Inter as FontSans } from "next/font/google"
 import './globals.css'
 
 import { cn } from "@/lib/utils"
+import Provider from "./Provider"
 import React from "react"
 import { Metadata } from "next"
 import { ClerkProvider } from "@clerk/nextjs"
@@ -39,7 +40,11 @@ export default function RootLayout({ children }:{children: React.ReactNode}) {
           fontSans.variable
         )}
       >
+
+        <Provider>
         {children}
+        </Provider>
+       
       </body>
     </html>
     </ClerkProvider>

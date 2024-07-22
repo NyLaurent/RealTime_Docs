@@ -1,14 +1,16 @@
 import React, { ReactNode } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import classNames from 'classnames'; // or import clsx from 'clsx'
 
 interface HeaderProps {
   children?: ReactNode;
+  className?: string;
 }
 
-const Header = ({ children }: HeaderProps): JSX.Element => {
+const Header = ({ children, className }: HeaderProps): JSX.Element => {
   return (
-    <div className='header'>
+    <div className={classNames('header', className)}>
       <Link href='/' className='md:flex-1'>
         <Image
           src='/assets/icons/logo.svg'
