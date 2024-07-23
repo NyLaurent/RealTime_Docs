@@ -1,10 +1,10 @@
 import CollaborativeRoom from "@/components/CollaborativeRoom"
-import { Editor } from "@/components/editor/Editor"
+
 
 const Document
  = () => {
   return (
-    <main className="flex w-full flex-col items-center">
+    <main>
        <CollaborativeRoom/>
     </main>
      
