@@ -1,6 +1,8 @@
 'use server'
 
 import { clerkClient } from "@clerk/nextjs/server"
+import { parse } from "path";
+import { parseStringify } from "../utils";
 
 export const getClerkUSers= async({userIds}:{userIds:string[]})=>{
 
@@ -17,7 +19,9 @@ export const getClerkUSers= async({userIds}:{userIds:string[]})=>{
                 avatar:user.imageUrl
             }
         ));
-        const sortedUsers =
+        const sortedUsers =userIds.map((email)=>users.find((user)=>
+        user.email===email))
+        return parseStringify(sortedUsers)
 
 
 
