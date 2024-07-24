@@ -5,6 +5,8 @@ import {Editor} from '@/components/editor/Editor'
 import Header from '@/components/Header'
 import { SignedOut,SignInButton,UserButton,SignedIn } from '@clerk/nextjs'
 
+import ActiveCollaborators from './ActiveCollaborators'
+
 const CollaborativeRoom = () => {
   return (
     <RoomProvider id="my-room">
@@ -18,13 +20,19 @@ const CollaborativeRoom = () => {
         gap-2'>
           <p className='document-title'>Share</p>
         </div>
+        <div className='flex w-full flex-1 justify-end gap-2 sm:gap-3'>
 
-      <SignedOut>
+          <ActiveCollaborators/>
+
+          <SignedOut>
           <SignInButton />
         </SignedOut>
         <SignedIn>
           <UserButton />
         </SignedIn>
+        </div>
+
+      
       </Header>
       <Editor/>
         </div>
