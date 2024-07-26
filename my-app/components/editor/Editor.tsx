@@ -10,6 +10,7 @@ import { ContentEditable } from '@lexical/react/LexicalContentEditable';
 import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin';
 import { LexicalErrorBoundary } from '@lexical/react/LexicalErrorBoundary';
 import React from 'react';
+import{liveblocksConfig} from '@liveblocks/react-lexical'
 
 // Catch any errors that occur during Lexical updates and log them
 // or throw them as needed. If you don't throw them, Lexical will
@@ -19,8 +20,11 @@ function Placeholder() {
   return <div className="editor-placeholder">Enter some rich text...</div>;
 }
 
-export function Editor() {
-  const initialConfig = {
+export function Editor({roomId,currentUserType}:{
+  roomId:string,
+  currentUserType: UserType
+}) {
+  const initialConfig = liveblocksConfig({
     namespace: 'Editor',
     nodes: [HeadingNode],
     onError: (error: Error) => {
@@ -28,13 +32,18 @@ export function Editor() {
       throw error;
     },
     theme: Theme,
-  };
+    editable:currentUserType === 'editor'
+  });
 
   return (
     <LexicalComposer initialConfig={initialConfig}>
       <div className="editor-container size-full">
+
+        <div className='toolbar-wrapper flex min-w-full justify-between'>
         <ToolbarPlugin />
 
+        </div>
+        
         <div className="editor-inner h-[1100px]">
           <RichTextPlugin
             contentEditable={
